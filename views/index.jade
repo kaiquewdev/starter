@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1= 'Socket.io Simple Test'
+
+    div.message-holder
+
+    script(src='/socket.io/socket.io.js')
+    script
+        var socket = io.connect('http://localhost');
+        
+        socket.on('news', function ( data ) {
+            console.log( data );     
+            socket.emit('page', {
+                data: 'Hello from page!'    
+            });
+        });
